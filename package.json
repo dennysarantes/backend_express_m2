@@ -1,0 +1,16 @@
+{
+  "name": "modulo_2",
+  "version": "1.0.0",
+  "description": "API de aprendizado",
+  "main": "index.js",
+  "author": "Dennys Arantes",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ./src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "sucrase": "^3.35.0"
+  }
+}
