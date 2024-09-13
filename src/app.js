@@ -1,13 +1,19 @@
 import express from 'express'
 import routes from './routes';
+import mongoose from 'mongoose';
+import { variaveis } from '../enviroments/env';
+import bdConnectMapper from './utils/bd-connect-mapper';
 
 class App{
     
-    // Variáveis
-
     constructor(){
+        // -------- Carregamento do express.js--------------
         this.server = express();
-        console.log('passou aqui...');
+
+        //--------- Conexão de banco --------------
+        const mongoConnect = bdConnectMapper.getStringConnect(variaveis.mongoDataBaseStringConnect);
+        mongoose.connect(mongoConnect);
+
         this.middlewares();
         this.routes();
     }
@@ -19,12 +25,10 @@ class App{
     }
 
     routes(){
-        console.log('tentando usar rotas...');
         try {
             this.server.use(routes);
-            console.log('rotas carregas com sucesso...');
         } catch (error) {
-            console.log('erro aqui...')
+            console.error('erro no carregamento de rotas...', error);
         }
     }
 }
